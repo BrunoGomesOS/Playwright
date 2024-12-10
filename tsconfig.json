@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "target": "ES6",                // Specify the ECMAScript target version
+      "module": "CommonJS",           // Specify the module system (Playwright uses CommonJS by default)
+      "moduleResolution": "Node",     // Resolve modules using Node.js resolution
+      "strict": true,                 // Enable all strict type-checking options
+      "baseUrl": ".",                 // Base directory for resolving non-relative module names
+      "paths": {
+        // Optional: Create an alias for your export folders
+        "@BusinessAgnosticScripts/*": ["BusinessAgnosticScripts/*"],
+        //"@OrderManagementScritpts/*": ["OrderManagementScritpts/*"] 
+      },
+      "esModuleInterop": true         // Enable compatibility with CommonJS modules
+    },
+    "include": ["**/*.ts"],           // Include all .ts files in the project
+    "exclude": ["node_modules"]       // Exclude the node_modules folder
+  }
+  
