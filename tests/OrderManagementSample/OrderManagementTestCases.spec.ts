@@ -11,13 +11,8 @@ test('Login and navigate to orders', async ({ page }) => {
   const customOSAssertions = new PlaywrightOSAssertions(page);
   const customOrderMngtStack = new PlaywrightOrderManagementStack(page);
   await page.goto('/OrderManagement/Login');
-  await customOSInterations.ClickElementByOSPropertyName("Input_UsernameVal");
-
-  const element = "input[id$=UserNameInput]";
-  await page.locator(element).click();
-
-  await page.getByTestId('SampleUsersLink').click();
-  await page.getByTestId('SampleUserLoginLink0').click();
+  await customOSInterations.ClickElementByOSPropertyName('SampleUsersLink');
+  await customOSInterations.ClickElementByOSPropertyName('SampleUserLoginLink0');
   await expect(page.locator('#b1-Dashboard')).toContainText('Welcome, Manuel Luís');
 
   // Assert existence of button to create a new order
