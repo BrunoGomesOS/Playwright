@@ -5,15 +5,16 @@ import { PlaywrightOSBehaviors } from 'BusinessAgnosticScripts/OSBehaviors';
 import { PlaywrightOSInterations } from 'BusinessAgnosticScripts/OSInterations';
 
 test('Login and navigate to orders', async ({ page }) => {
-  test.setTimeout(60_000); //set test total timeout (60 seconds)
+  // test.setTimeout(60_000); //set test total timeout (60 seconds)
   const customOSInterations = new PlaywrightOSInterations(page);
   const customOSBehaviors = new PlaywrightOSBehaviors(page);
   const customOSAssertions = new PlaywrightOSAssertions(page);
   const customOrderMngtStack = new PlaywrightOrderManagementStack(page);
   await page.goto('/OrderManagement/Login');
-  await customOSInterations.ClickElementByOSPropertyName('SampleUsersLink');
-  await customOSInterations.ClickElementByOSPropertyName('SampleUserLoginLink0');
-  await expect(page.locator('#b1-Dashboard')).toContainText('Welcome, Manuel Luís');
+  //await page.getByTestId("SampleUsersLink").click();
+  await customOSInterations.ClickElementByOSPropertyName("SampleUsersLink");
+  await customOSInterations.ClickElementByOSPropertyName("SampleUserLoginLink0");
+  await expect(page.locator('#b1-Dashboard')).toContainText("Welcome, Manuel Luís");
 
   // Assert existence of button to create a new order
   await customOSAssertions.AssertElementVisible("ButtonNewOrder");

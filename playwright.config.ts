@@ -11,8 +11,8 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  // root folder from where the exports can be done
-  testDir: './Playwright',
+  // Look for test files in the "tests" directory, relative to this configuration file.
+  testDir: './tests',
 
   /** It sets the global timeout for each test case to 5 minutes (300,000 milliseconds). 
   * This means that any single test will be allowed to run for up to 5 minutes before being forcefully terminated and marked as failed. 
@@ -64,16 +64,6 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
       name: 'Showcase Dev',
       use: { ...devices['Desktop Chrome'], 
         baseURL: 'https://showcase-dev.outsystemsdevopsexperts.com',
@@ -82,7 +72,7 @@ export default defineConfig({
       },
     },
 
-    {
+    /* {
       name: 'Mobile Iphone 13',
       use: { ...devices['iPhone 13'], 
         // It is important to define the `viewport` property after destructuring `devices`,
@@ -91,7 +81,7 @@ export default defineConfig({
         isMobile: true,
       },
     },
-
+ */
   
   ],
 

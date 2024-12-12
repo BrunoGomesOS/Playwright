@@ -13,13 +13,13 @@ export class PlaywrightOSInterations {
     }
 
     async ClickElementByOSPropertyName(OSName: string){
-      const element = this.customAbstractions.GetElementLocatorByOSName(OSName);
+      const element = await this.customAbstractions.GetElementLocatorByOSName(OSName);
       await element.click();
       await this.page.waitForTimeout(1000);
     }
 
     async ClickLinkInTableRowColumnByOSPropertyName(OSTableName: string, rowNum: number, colNum: number){
-      const table = this.customAbstractions.GetElementLocatorByOSName(OSTableName);
+      const table = await this.customAbstractions.GetElementLocatorByOSName(OSTableName);
       const tableCellLink = table.locator("tr:nth-of-type("+rowNum+") td:nth-child("+colNum+") a");
       await tableCellLink.click();
       await this.page.waitForTimeout(1000);
@@ -33,7 +33,7 @@ export class PlaywrightOSInterations {
     }
 
     async SlideXValuesByOSPropertyName(OSSlideName: string, xMaxValue: number, xShiftLowerValue?: number, xShiftUpperValue?: number){
-      const slider = this.customAbstractions.GetElementLocatorByOSName(OSSlideName);
+      const slider = await this.customAbstractions.GetElementLocatorByOSName(OSSlideName);
 
       // get slider handlers
       const sliderLowerHandler = slider.locator('.noUi-handle.noUi-handle-lower');
@@ -85,7 +85,7 @@ export class PlaywrightOSInterations {
     }
 
     async OSElementGetPageCoordinates(OSName:string){
-      const element = this.customAbstractions.GetElementLocatorByOSName(OSName);
+      const element = await this.customAbstractions.GetElementLocatorByOSName(OSName);
       return await element.boundingBox();
     }
 
@@ -100,15 +100,15 @@ export class PlaywrightOSInterations {
     }
 
     async ElementDragAndDropAtElementLocator(ItemToBeDraggedOSName: string, ItemToDropAtOSName: string ){
-      const eleToDrag = this.customAbstractions.GetElementLocatorByOSName(ItemToBeDraggedOSName);
-      const eleToDropAt = this.customAbstractions.GetElementLocatorByOSName(ItemToDropAtOSName);
+      const eleToDrag = await this.customAbstractions.GetElementLocatorByOSName(ItemToBeDraggedOSName);
+      const eleToDropAt = await this.customAbstractions.GetElementLocatorByOSName(ItemToDropAtOSName);
       await eleToDrag.waitFor({state:'visible'});
       await eleToDropAt.waitFor({state:'visible'});
       await eleToDrag.dragTo(eleToDropAt);
     }
 
     async FillOSInputByOSPropertyName(OSInputName: string, textInput: string){
-      const element = this.customAbstractions.GetElementLocatorByOSName(OSInputName);
+      const element = await this.customAbstractions.GetElementLocatorByOSName(OSInputName);
         await element.fill(textInput);
         await this.page.waitForTimeout(1000);
     }

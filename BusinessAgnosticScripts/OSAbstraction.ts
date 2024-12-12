@@ -6,14 +6,24 @@ export class PlaywrightOSAbstraction {
     constructor(page: Page) {
       this.page = page;
     }
-
-    GetElementLocatorByOSName(OSName: string):Locator{
+    /*
+    ** Get element By ID or testId 
+    */
+    async GetElementLocatorByOSName(OSName: string):Promise<Locator>{
         const element = "[id$="+OSName+"]";
-        return this.page.locator(element);
+        let eleLocator = this.page.locator(element);
+        if((await eleLocator.count()) > 0){
+            return eleLocator
+        }else{
+            eleLocator = this.page.getByTestId(OSName);
+            return eleLocator;
+        }
+        
+        
     }
 
-    getElementByInnerText(innerText: string): Locator {
-        return this.page.locator(`text="${innerText}"`);
+    async getElementByInnerText(innerText: string): Promise<Locator> {
+        return await this.page.locator(`text="${innerText}"`);
     }
     
 }
